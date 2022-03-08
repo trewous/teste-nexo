@@ -21,4 +21,6 @@
 }
 .game-messages {
   color: #fff;
+  text-align: center;
+  text-transform: uppercase;
 }
