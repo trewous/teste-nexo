@@ -10,8 +10,7 @@ const Game = () => {
   const [machinePick, setMachinePick] = useState('')
   const [machineChoosing, setMachineChoosing] = useState(false)
   const [winner, setWinner] = useState('')
-
-  const machinePickMessage = `machine selected ${machinePick}`
+  const [messageWinner, setMessageWinner] = useState('')
 
   const gameButtonClick = (pick: string) => {
     setMyPick(pick)
@@ -24,15 +23,25 @@ const Game = () => {
 
   useEffect(() => {
     if (myPick !== '' && machinePick !== '') {
-      setWinner(getWinner(myPick, machinePick))
+      const resultWinner = getWinner(myPick, machinePick)
+      setWinner(resultWinner)
     }
   }, [myPick, machinePick])
 
   useEffect(() => {
     if (winner === 'me') {
       setScore(score + 1)
+      setMessageWinner('you win')
+    } else if (winner === 'machine') {
+      setMessageWinner('you lose')
+    } else if (winner === 'empate') {
+      setMessageWinner('tie')
     }
   }, [winner])
+
+  const resetGame = () => {
+    window.location.reload()
+  }
 
   console.log(winner)
 
@@ -52,6 +61,13 @@ const Game = () => {
       </div>
       <div>
         {machineChoosing && myPick !== '' && <p>machine is choosing...</p>}
+        {!machineChoosing && machinePick !== '' && (
+          <p>{`machine selected ${machinePick}`}</p>
+        )}
+        {messageWinner !== '' && <h3>{messageWinner}</h3>}
+      </div>
+      <div>
+        <button onClick={() => resetGame()}>play again</button>
       </div>
     </div>
   )
