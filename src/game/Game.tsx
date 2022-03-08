@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Score from './Score'
 import GameButtons from './GameButtons'
+import './game.css'
 import { getWinner } from './utils/getWinner'
 import { getMachinePick } from './utils/getMachinePick'
 
@@ -46,7 +47,7 @@ const Game = () => {
   console.log(winner)
 
   return (
-    <div>
+    <div className="container">
       <Score score={score} />
       <div>
         <div onClick={() => gameButtonClick('pedra')}>

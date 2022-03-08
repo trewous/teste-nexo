@@ -1,4 +1,5 @@
 import React from 'react'
+import './score.css'
 
 interface ScoreProps {
   score: number
@@ -6,9 +7,9 @@ interface ScoreProps {
 
 const Score = ({ score }: ScoreProps) => {
   return (
-    <div>
-      <h4>score</h4>
-      <span>{score}</span>
+    <div className="score-container">
+      <h4 className="score-title">score</h4>
+      <span className="score-number">{score}</span>
     </div>
   )
 }
