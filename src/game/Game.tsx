@@ -49,13 +49,14 @@ const Game = () => {
   return (
     <div className="container">
       <Score score={score} />
-      <div>
+      <div className="buttons-container">
         <div onClick={() => gameButtonClick('pedra')}>
           <GameButtons type="pedra" />
         </div>
         <div onClick={() => gameButtonClick('papel')}>
           <GameButtons type="papel" />
         </div>
+        <div className="break"></div>
         <div onClick={() => gameButtonClick('tesoura')}>
           <GameButtons type="tesoura" />
         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import './gameButtons.css'
 
 interface GameButtonsProps {
   type: string
@@ -7,7 +8,7 @@ interface GameButtonsProps {
 const GameButtons = ({ type }: GameButtonsProps) => {
   if (type === 'pedra') {
     return (
-      <div>
+      <div className="game-button pedra">
         <svg
           width="48"
           height="48"
@@ -24,7 +25,7 @@ const GameButtons = ({ type }: GameButtonsProps) => {
     )
   } else if (type === 'papel') {
     return (
-      <div>
+      <div className="game-button papel">
         <svg
           width="49"
           height="59"
@@ -41,7 +42,7 @@ const GameButtons = ({ type }: GameButtonsProps) => {
     )
   } else {
     return (
-      <div>
+      <div className="game-button tesoura">
         <svg
           width="51"
           height="58"
