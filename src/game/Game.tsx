@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Score from './Score'
 import GameButtons from './GameButtons'
+import Button from './Button'
 import './game.css'
 import { getWinner } from './utils/getWinner'
 import { getMachinePick } from './utils/getMachinePick'
@@ -40,12 +41,6 @@ const Game = () => {
     }
   }, [winner])
 
-  const resetGame = () => {
-    window.location.reload()
-  }
-
-  console.log(winner)
-
   return (
     <div className="container">
       <Score score={score} />
@@ -61,7 +56,7 @@ const Game = () => {
           <GameButtons type="tesoura" />
         </div>
       </div>
-      <div>
+      <div className="game-messages">
         {machineChoosing && myPick !== '' && <p>machine is choosing...</p>}
         {!machineChoosing && machinePick !== '' && (
           <p>{`machine selected ${machinePick}`}</p>
@@ -69,7 +64,7 @@ const Game = () => {
         {messageWinner !== '' && <h3>{messageWinner}</h3>}
       </div>
       <div>
-        <button onClick={() => resetGame()}>play again</button>
+        <Button />
       </div>
     </div>
   )
