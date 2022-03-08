@@ -1,7 +1,15 @@
-const regras = {
+const regras: Regras = {
   pedra: { pedra: 'empate', papel: 'papel', tesoura: 'pedra' },
   papel: { papel: 'empate', pedra: 'papel', tesoura: 'tesoura' },
   tesoura: { tesoura: 'empate', papel: 'tesoura', pedra: 'pedra ' },
+}
+
+interface Pick {
+  [key: string]: {}
+}
+
+interface Regras {
+  [key: string]: Pick
 }
 
 export const getWinner = (myPick: string, machinePick: string) => {
@@ -15,5 +23,11 @@ export const getWinner = (myPick: string, machinePick: string) => {
 
   // }
 
-  return winner
+  winner = regras[myPick][machinePick]
+
+  return winner === myPick
+    ? 'me'
+    : winner === machinePick
+    ? 'machine'
+    : 'empate'
 }
