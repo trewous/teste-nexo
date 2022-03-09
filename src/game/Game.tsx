@@ -11,14 +11,17 @@ const Game = () => {
   const [myPick, setMyPick] = useState('')
   const [machinePick, setMachinePick] = useState('')
   const [machineChoosing, setMachineChoosing] = useState(false)
+  const [haveWinner, setHaveWinner] = useState(false)
   const [winner, setWinner] = useState('')
   const [messageWinner, setMessageWinner] = useState('')
 
   const gameButtonClick = (pick: string) => {
+    setHaveWinner(false)
     setMyPick(pick)
     setMachineChoosing(true)
     setTimeout(() => {
       setMachineChoosing(false)
+      setHaveWinner(true)
     }, 500)
     setMachinePick(getMachinePick())
   }
@@ -61,7 +64,7 @@ const Game = () => {
         {!machineChoosing && machinePick !== '' && (
           <p>{`machine selected ${machinePick}`}</p>
         )}
-        {messageWinner !== '' && <h3>{messageWinner}</h3>}
+        {messageWinner !== '' && haveWinner && <h3>{messageWinner}</h3>}
       </div>
       <div>
         <Button />
