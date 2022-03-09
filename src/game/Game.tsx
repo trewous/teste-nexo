@@ -5,6 +5,8 @@ import Button from './Button'
 import './game.css'
 import { getWinner } from './utils/getWinner'
 import { getMachinePick } from './utils/getMachinePick'
+import { fetchPlayer } from './Services/player.service'
+import { Player } from './Services/player.service'
 
 const Game = () => {
   const [score, setScore] = useState(0)
@@ -14,6 +16,7 @@ const Game = () => {
   const [haveWinner, setHaveWinner] = useState(false)
   const [winner, setWinner] = useState('')
   const [messageWinner, setMessageWinner] = useState('')
+  const [player, setPlayer] = useState<Player>({ name: '' })
 
   const gameButtonClick = (pick: string) => {
     setHaveWinner(false)
@@ -25,6 +28,10 @@ const Game = () => {
     }, 500)
     setMachinePick(getMachinePick())
   }
+
+  useEffect(() => {
+    fetchPlayer().then((player) => setPlayer(player[0]))
+  }, [])
 
   useEffect(() => {
     if (myPick !== '' && machinePick !== '') {
@@ -46,6 +53,7 @@ const Game = () => {
 
   return (
     <div className="container">
+      <h1>{`Olá, ${player.name}`}</h1>
       <Score score={score} />
       <div className="buttons-container">
         <div onClick={() => gameButtonClick('pedra')}>
